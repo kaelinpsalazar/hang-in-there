@@ -134,7 +134,7 @@ showSavedButton.addEventListener('click', switchToSaved)
 makePosterButton.addEventListener('click', switchToCreate)
 showPosterButton.addEventListener('click', createNewPoster)
 savePosterButton.addEventListener('click', savePoster)
-showMainButtonSaved.addEventListener('click', switchToMainFromSaved);
+// showMainButtonSaved.addEventListener('click', switchToMainFromSaved);
 
 
 
@@ -202,3 +202,43 @@ function createNewPoster(event) {
   
   switchToMainFromForm();
 }
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
+
+  displaySavedPosters();
+}
+
+// Saving posters 
+function displaySavedPosters() {
+  var posterPage = document.querySelector(".saved-posters-grid");
+  posterPage.innerHTML = ''; 
+
+  savedPosters.forEach(function(poster) {
+    var posterDiv = document.createElement('div');
+    posterDiv.classList.add('mini-poster');
+
+    var posterImg = document.createElement('img');
+    posterImg.src = poster.imageURL;
+    posterImg.classList.add('mini-poster-img');
+
+    var posterTitle = document.createElement('h2');
+    posterTitle.innerText = poster.title;
+
+    var posterQuote = document.createElement('h4');
+    posterQuote.innerText = poster.quote;
+
+    posterDiv.appendChild(posterImg);
+    posterDiv.appendChild(posterTitle);
+    posterDiv.appendChild(posterQuote);
+
+    posterPage.appendChild(posterDiv);
+  });
+
+  switchToSaved();
+}
+
+
+window.addEventListener('load', createRandomPoster);
