@@ -131,7 +131,10 @@ var currentPoster;
 // var savePosterButton = document.querySelector('.save-poster');
 
 showRandomButton.addEventListener('click', createRandomPoster)
-showSavedButton.addEventListener('click', )
+showSavedButton.addEventListener('click', switchToSaved)
+makePosterButton.addEventListener('click', switchToCreate)
+
+
 
 
 
@@ -162,9 +165,16 @@ function createRandomPoster() {
   currentPoster = createPoster(randomImage, randomTitle, randomQuote);
 }
 
-// function changePage () {
+function switchToSaved() { 
+  mainPosterSection.classList.toggle('hidden')
+  savedPosterSection.classList.toggle('hidden')
+}
+
+function switchToCreate() {
+  mainPosterSection.classList.toggle('hidden')
+  posterFormSection.classList.toggle('hidden')
+}
 
 
-// }
 
 window.addEventListener('load', createRandomPoster);
