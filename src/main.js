@@ -1,4 +1,24 @@
 // query selector variables go here 👇
+//buttons 
+var showSavedButton = document.querySelector('.show-saved');
+var showMainButtonForm = document.querySelector('.show-main'); 
+var showMainButtonSaved = document.querySelector('.back-to-main'); 
+var showRandomButton = document.querySelector('.show-random');
+var makePosterButton = document.querySelector('.show-form');
+var savePosterButton = document.querySelector('.save-poster');
+
+// poster sections
+
+var mainPosterSection = document.querySelector('.main-poster');
+var posterFormSection = document.querySelector('.poster-form');
+var savedPosterSection = document.querySelector('.saved-posters');
+
+// posters elements
+
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+
 
 // we've provided you with some data to work with 👇
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
@@ -103,6 +123,17 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
+// var showSavedButton = document.querySelector('.show-saved');
+// var showMainButtonForm = document.querySelector('.show-main'); 
+// var showMainButtonSaved = document.querySelector('.back-to-main'); 
+// var showRandomButton = document.querySelector('.show-random');
+// var makePosterButton = document.querySelector('.show-form');
+// var savePosterButton = document.querySelector('.save-poster');
+
+showRandomButton.addEventListener('click', createRandomPoster)
+showSavedButton.addEventListener('click', )
+
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -117,3 +148,23 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
+
+// creating a random poster
+function createRandomPoster() {
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitle = titles[getRandomIndex(titles)];
+  var randomQuote = quotes[getRandomIndex(quotes)];
+  
+  posterImage.src = randomImage;
+  posterTitle.innerText = randomTitle;
+  posterQuote.innerText = randomQuote;
+
+  currentPoster = createPoster(randomImage, randomTitle, randomQuote);
+}
+
+// function changePage () {
+
+
+// }
+
+window.addEventListener('load', createRandomPoster);
