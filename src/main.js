@@ -9,22 +9,14 @@ var savePosterButton = document.querySelector('.save-poster');
 var showPosterButton = document.querySelector('.make-poster')
 
 // poster sections
-
 var mainPosterSection = document.querySelector('.main-poster');
 var posterFormSection = document.querySelector('.poster-form');
 var savedPosterSection = document.querySelector('.saved-posters');
 
 // posters elements
-
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
-
-// // user input
-// var userImage = document.querySelector('#poster-image-url').value;
-// var userTitle = document.querySelector('#poster-title').value;
-// var userQuote = document.querySelector('#poster-quote').value;
-
 
 // we've provided you with some data to work with 👇
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
@@ -216,29 +208,30 @@ function displaySavedPosters() {
   var posterPage = document.querySelector(".saved-posters-grid");
   posterPage.innerHTML = ''; 
 
-  savedPosters.forEach(function(poster) {
-    var posterDiv = document.createElement('div');
-    posterDiv.classList.add('mini-poster');
-
-    var posterImg = document.createElement('img');
-    posterImg.src = poster.imageURL;
-    posterImg.classList.add('mini-poster-img');
-
-    var posterTitle = document.createElement('h2');
-    posterTitle.innerText = poster.title;
-
-    var posterQuote = document.createElement('h4');
-    posterQuote.innerText = poster.quote;
-
-    posterDiv.appendChild(posterImg);
-    posterDiv.appendChild(posterTitle);
-    posterDiv.appendChild(posterQuote);
-
-    posterPage.appendChild(posterDiv);
-  });
+  savedPosters.forEach(createPosterElement);
 
   switchToSaved();
 }
 
+function createPosterElement(poster) {
+  var posterDiv = document.createElement('div');
+  posterDiv.classList.add('mini-poster');
+
+  var posterImg = document.createElement('img');
+  posterImg.src = poster.imageURL;
+  posterImg.classList.add('mini-poster-img');
+
+  var posterTitle = document.createElement('h2');
+  posterTitle.innerText = poster.title;
+
+  var posterQuote = document.createElement('h4');
+  posterQuote.innerText = poster.quote;
+
+  posterDiv.appendChild(posterImg);
+  posterDiv.appendChild(posterTitle);
+  posterDiv.appendChild(posterQuote);
+
+  document.querySelector(".saved-posters-grid").appendChild(posterDiv);
+}
 
 window.addEventListener('load', createRandomPoster);
