@@ -4,9 +4,10 @@ var savePosterButton = document.querySelector('.save-poster');
 var showSavedButton = document.querySelector('.show-saved');
 var showRandomButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
-var unmotivationalButton = document.querySelector('.show-unmotivational')
-var showMainButtonForm = document.querySelector('.show-main'); 
-var showPosterButton = document.querySelector('.make-poster')
+var unmotivationalButton = document.querySelector('.show-unmotivational');
+var showMainButton = document.querySelector('.show-main');
+var showPosterButton = document.querySelector('.make-poster');
+
 
 
 // poster sections
@@ -16,7 +17,8 @@ var savedPosterSection = document.querySelector('.saved-posters');
 var unmotivationalSection = document.querySelector('.unmotivational-section');
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
-
+var unmotivationalBackToMain = document.querySelector('.unmotivational-section .back-to-main')
+var savedPostersToMain = document.querySelector('.saved-posters .back-to-main')
 // posters elements
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
@@ -255,9 +257,11 @@ makePosterButton.addEventListener('click', switchToCreate)
 showPosterButton.addEventListener('click', createNewPoster)
 savePosterButton.addEventListener('click', savePoster)
 unmotivationalButton.addEventListener('click',switchToUmotivational)
-showMainButtonForm.addEventListener('click', switchToMain)
-showSavedButton.addEventListener('click', displaySavedPosters);
-unmotivationalSection.addEventListener('dblclick', deletePoster);
+showMainButton.addEventListener('click',switchToMain)
+showSavedButton.addEventListener('click', displaySavedPosters)
+unmotivationalSection.addEventListener('dblclick', deletePoster)
+unmotivationalBackToMain.addEventListener('click', switchToMain )
+savedPostersToMain.addEventListener('click', switchToMain)
 // showMainButtonSaved.addEventListener('click', switchToMainFromSaved);
 
 
@@ -299,7 +303,9 @@ function switchSection(shownSection) {
 
   shownSection.classList.remove('hidden');
 }
+
 function switchToMain() {
+  console.log("Switching to main poster section");
   switchSection(mainPosterSection);
 }
 
@@ -308,41 +314,15 @@ function switchToSaved() {
 }
 
 function switchToCreate() {
+  
   switchSection(posterFormSection);
 }
 
 function switchToUmotivational() {
+  console.log("Switching to main poster section");
   switchSection(unmotivationalSection);
   displayUnmotivationalPosters(unmotivationalPosters);
 }
-// function switchToMain() {
-//   mainPosterSection.classList.remove('hidden');
-//   posterFormSection.classList.add('hidden');
-//   savedPosterSection.classList.add('hidden');
-//   unmotivationalSection.classList.add('hidden');
-// }
-
-// function switchToSaved() { 
-//   mainPosterSection.classList.add('hidden')
-//   savedPosterSection.classList.remove('hidden')
-// }
-
-// function switchToCreate() {
-//   mainPosterSection.classList.add('hidden')
-//   posterFormSection.classList.remove('hidden')
-// }
-
-// function switchToMainFrom() {
-//   posterFormSection.classList.add('hidden');
-//   mainPosterSection.classList.remove('hidden');
-// }
-
-// function switchToUmotivational() {
-//   unmotivationalSection.classList.remove('hidden');
-//   mainPosterSection.classList.add('hidden');
-//   posterFormSection.classList.add('hidden');
-//   savedPosterSection.classList.add('hidden');
-//   displayUnmotivationalPosters(unmotivationalPosters)}
 
 
 // creating a new poster
@@ -362,7 +342,6 @@ function createNewPoster(event) {
   posterTitle.innerText = currentPoster.title;
   posterQuote.innerText = currentPoster.quote;
   
-  switchToMainFrom();
 }
 
 function savePoster() {
@@ -380,7 +359,6 @@ function displaySavedPosters() {
 
   savedPosters.forEach(createPosterElement);
 
-  switchToSaved();
 }
 
 
@@ -406,22 +384,9 @@ function createPosterElement(poster) {
   
   document.querySelector(".saved-posters-grid").appendChild(posterDiv);
 }
-// function createPosterElement () {
-
-//   savedPosters.forEach(poster => {
-//     savedPostersGrid.innerHTML += `
-//     <section class="mini-poster">
-//       <img src="${poster.imageURL}>
-//       <h2>${poster.title}</h2>
-//       <h4>${poster.quote}</h4>
-//     </section>`
-//   })
-
-// }
 
 
 // creating unmotivational elements in the DOM
-
 function displayUnmotivationalPosters (unmotivationalPosters) {
   unmotivationalPosters.forEach(poster => {
     unmotivationalGrid.innerHTML += `
@@ -433,40 +398,9 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
     `;
   })
 }
-// function displayUnmotivationalPosters (unmotivationalPosters) {
-
-//   unmotivationalPosters.forEach(poster => {
-//       var posterDiv = document.createElement('div');
-//       posterDiv.classList.add('mini-poster');
-  
-//       var img = document.createElement('img');
-//       img.src = poster.img_url; 
-//       img.alt = poster.name; 
-  
-//       var title = document.createElement('h2');
-//       title.innerText = poster.name;
-  
-//       var description = document.createElement('p');
-//       description.innerText = poster.description;
-  
-  
-//       posterDiv.appendChild(img);
-//       posterDiv.appendChild(title);
-//       posterDiv.appendChild(description);  
-//       unmotivationalGrid.appendChild(posterDiv);
-//   });
-// }
-
 
 // Delete poster on double click
-// function deletePoster(event) { 
-//   const poster = event.target
 
-//   if (poster.classList.contains('mini-poster')) {
-//     target.remove
-//   }
-
-// }
 function deletePoster(event) {
   const posterDiv = event.target.closest('.mini-poster');
   if (posterDiv) {
