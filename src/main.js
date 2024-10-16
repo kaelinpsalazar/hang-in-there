@@ -305,7 +305,6 @@ function switchSection(shownSection) {
 }
 
 function switchToMain() {
-  console.log("Switching to main poster section");
   switchSection(mainPosterSection);
 }
 
@@ -319,7 +318,7 @@ function switchToCreate() {
 }
 
 function switchToUmotivational() {
-  console.log("Switching to main poster section");
+  console.log("Switching to unmotivational section");
   switchSection(unmotivationalSection);
   displayUnmotivationalPosters(unmotivationalPosters);
 }
@@ -342,6 +341,7 @@ function createNewPoster(event) {
   posterTitle.innerText = currentPoster.title;
   posterQuote.innerText = currentPoster.quote;
   
+  switchToMain();
 }
 
 function savePoster() {
