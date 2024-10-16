@@ -1,46 +1,35 @@
-# Hang In There
-
-A boilerplate repo. 
-
-## Set Up
-
-1. Fork this repository
-2. Clone down your new, forked repo
-3. `cd` into the repository
-4. Open it in your text editor
-5. Add the instructors as collaborators on the repository
-
-Project spec & rubric can be found [here](https://curriculum.turing.edu/module2/projects/hang-in-there/index)
-
-To view your project:
-
-1. In your terminal, navigate to your project repo
-2. Run the command `open index.html`
-  
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
-______________________________________________________  
-
 # Hang in There  
 
 ### Abstract:
-[//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
+
+- This is an application that allows one to display and create posters, both motivational and unmotivational. One can make a randomly created motivational poster from a set of preloaded data, or specifically put in your own information for a personalized poster. 
 
 ### Installation Instructions:
-[//]: <> (What steps does a person have to take to get your app cloned down and running?)
+To get started with the Hang in There application, follow these steps:
+
+1. **Fork the Repository:** Click the "Fork" button on the top right of this repository to create your own copy.
+2. **Clone the Forked Repo:** Use the command `git clone <your-forked-repo-url>` to clone your new, forked repository to your local machine.
+3. **Navigate to the Directory:** `cd` into the repository directory.
+4. **Open in a Text Editor:** Open the project in your preferred text editor.
+
+
 
 ### Preview of App:
-[//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off. gifs preferred!)
+![Luffy](assets/Screenshot%202024-10-16%20at%204.24.08%20PM.png)
 
 ### Context:
-[//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
+- This is the first project in Module 2. We had a week to accomplish this project. 
 
 ### Contributors:
-[//]: <> (Who worked on this application? Link to your GitHub. Consider also providing LinkedIn link)
+- [Kaelin Salazar](https://github.com/kaelinpsalazar)
 
 ### Learning Goals:
-[//]: <> (What were the learning goals of this project? What tech did you work with?)
+The learning goals of this project included: 
+  - Employing clean JS and building functionality over multiple iterations. 
+  - Applying CSS and HTML to match the styling of the provided comps.
+  - Understanding, and using, existing code to promote functionality. 
 
 ### Wins + Challenges:
 [//]: <> (What are 2-3 wins you have from this project? What were some challenges you faced - and how did you get over them?)
+1. One challenge I came across was refactoring codde i had already written, and making the code more readable. 
+2. I was pleased with my ability to complete this project. 
