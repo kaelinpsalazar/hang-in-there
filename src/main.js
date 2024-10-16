@@ -254,7 +254,7 @@ showSavedButton.addEventListener('click', switchToSaved)
 makePosterButton.addEventListener('click', switchToCreate)
 showPosterButton.addEventListener('click', createNewPoster)
 savePosterButton.addEventListener('click', savePoster)
-unmotivationalButton.addEventListener('click',switchToUmotivational )
+unmotivationalButton.addEventListener('click',switchToUmotivational)
 showMainButtonForm.addEventListener('click', switchToMain)
 showSavedButton.addEventListener('click', displaySavedPosters);
 unmotivationalSection.addEventListener('dblclick', deletePoster);
@@ -291,33 +291,58 @@ function createRandomPoster() {
 }
 
 // switching between the views 
-function switchToMain() {
-  mainPosterSection.classList.remove('hidden');
-  posterFormSection.classList.add('hidden');
-  savedPosterSection.classList.add('hidden');
-  unmotivationalSection.classList.add('hidden');
+function switchSection(shownSection) {
+  const sections = [mainPosterSection, posterFormSection, savedPosterSection, unmotivationalSection]; 
+  sections.forEach(section => {
+    section.classList.add('hidden');
+  });
+
+  shownSection.classList.remove('hidden');
 }
-function switchToSaved() { 
-  mainPosterSection.classList.add('hidden')
-  savedPosterSection.classList.remove('hidden')
+function switchToMain() {
+  switchSection(mainPosterSection);
+}
+
+function switchToSaved() {
+  switchSection(savedPosterSection);
 }
 
 function switchToCreate() {
-  mainPosterSection.classList.add('hidden')
-  posterFormSection.classList.remove('hidden')
-}
-
-function switchToMainFrom() {
-  posterFormSection.classList.add('hidden');
-  mainPosterSection.classList.remove('hidden');
+  switchSection(posterFormSection);
 }
 
 function switchToUmotivational() {
-  unmotivationalSection.classList.remove('hidden');
-  mainPosterSection.classList.add('hidden');
-  posterFormSection.classList.add('hidden');
-  savedPosterSection.classList.add('hidden');
-  displayUnmotivationalPosters(unmotivationalPosters)}
+  switchSection(unmotivationalSection);
+  displayUnmotivationalPosters(unmotivationalPosters);
+}
+// function switchToMain() {
+//   mainPosterSection.classList.remove('hidden');
+//   posterFormSection.classList.add('hidden');
+//   savedPosterSection.classList.add('hidden');
+//   unmotivationalSection.classList.add('hidden');
+// }
+
+// function switchToSaved() { 
+//   mainPosterSection.classList.add('hidden')
+//   savedPosterSection.classList.remove('hidden')
+// }
+
+// function switchToCreate() {
+//   mainPosterSection.classList.add('hidden')
+//   posterFormSection.classList.remove('hidden')
+// }
+
+// function switchToMainFrom() {
+//   posterFormSection.classList.add('hidden');
+//   mainPosterSection.classList.remove('hidden');
+// }
+
+// function switchToUmotivational() {
+//   unmotivationalSection.classList.remove('hidden');
+//   mainPosterSection.classList.add('hidden');
+//   posterFormSection.classList.add('hidden');
+//   savedPosterSection.classList.add('hidden');
+//   displayUnmotivationalPosters(unmotivationalPosters)}
 
 
 // creating a new poster
@@ -401,10 +426,10 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
   unmotivationalPosters.forEach(poster => {
     unmotivationalGrid.innerHTML += `
       <section class="mini-poster">
-        <img src="${poster.img_url}" alt=poster image">
-        <h2>${poster.title}</h2>
-        <h4>${poster.quote}</h4>
-      </section>'
+        <img src="${poster.img_url}" alt="poster image">
+        <h2>${poster.name}</h2>
+        <h4>${poster.description}</h4>
+      </section>
     `;
   })
 }
@@ -434,18 +459,18 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
 
 
 // Delete poster on double click
-function deletePoster(event) { 
-  const poster = event.target
+// function deletePoster(event) { 
+//   const poster = event.target
 
-  if (poster.classList.contains('mini-poster')) {
-    target.remove
-  }
-
-}
-// function deletePoster(event) {
-//   const posterDiv = event.target.closest('.mini-poster');
-//   if (posterDiv) {
-//     posterDiv.remove();
+//   if (poster.classList.contains('mini-poster')) {
+//     target.remove
 //   }
+
 // }
+function deletePoster(event) {
+  const posterDiv = event.target.closest('.mini-poster');
+  if (posterDiv) {
+    posterDiv.remove();
+  }
+}
 window.addEventListener('load', createRandomPoster);
