@@ -144,3 +144,11 @@ button:hover {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+.unmotivational-section div{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-evenly;
+ margin: 20px;
+
+}

@@ -384,7 +384,7 @@ function createPosterElement(poster) {
   
 function displayUnmotivationalPosters (unmotivationalPosters) {
 
-    unmotivationalPosters.forEach(poster => {
+  unmotivationalPosters.forEach(poster => {
       var posterDiv = document.createElement('div');
       posterDiv.classList.add('mini-poster');
   
@@ -403,7 +403,7 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
       posterDiv.appendChild(title);
       posterDiv.appendChild(description);  
       unmotivationalGrid.appendChild(posterDiv);
-    });
+  });
 }
 
 
