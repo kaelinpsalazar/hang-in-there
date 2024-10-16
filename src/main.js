@@ -1,17 +1,19 @@
 // query selector variables go here 👇
 //buttons 
+var savePosterButton = document.querySelector('.save-poster');
 var showSavedButton = document.querySelector('.show-saved');
-var showMainButtonForm = document.querySelector('.show-main'); 
-var showMainButtonSaved = document.querySelector('.back-to-main'); 
 var showRandomButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
-var savePosterButton = document.querySelector('.save-poster');
+var unmotivationalButton = document.querySelector('.show-unmotivational')
+var showMainButtonForm = document.querySelector('.show-main'); 
 var showPosterButton = document.querySelector('.make-poster')
+
 
 // poster sections
 var mainPosterSection = document.querySelector('.main-poster');
 var posterFormSection = document.querySelector('.poster-form');
 var savedPosterSection = document.querySelector('.saved-posters');
+var unmotivationalSection = document.querySelector('.unmotivational-section')
 
 // posters elements
 var posterImage = document.querySelector('.poster-img');
@@ -117,6 +119,130 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+
+let unmotivationalPosters = [
+  {
+    name: "FAILURE",
+    description: "Why bother trying? It's probably not worth it.",
+    price: 68.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/failure.jpg",
+  },
+  {
+    name: "MEDIOCRITY",
+    description: "Dreams are just that—dreams.",
+    price: 127.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/mediocrity.jpg",
+  },
+  {
+    name: "REGRET",
+    description: "Hard work rarely pays off.",
+    price: 89.00,
+    year: 2018,
+    vintage: true,
+    img_url:  "./assets/regret.jpg",
+  },
+  {
+    name: "FUTILITY",
+    description: "You're not good enough.",
+    price: 150.00,
+    year: 2016,
+    vintage: false,
+    img_url:  "./assets/futility.jpg",
+  },
+  {
+    name: "DEFEAT",
+    description: "It's too late to start now.",
+    price: 35.00,
+    year: 2023,
+    vintage: false,
+    img_url:  "./assets/defeat.jpg",
+  },
+  {
+    name: "HOPELESSNESS",
+    description: "Stay in your comfort zone; it's safer.",
+    price: 112.00,
+    year: 2020,
+    vintage: true,
+    img_url: "./assets/hopelessness.jpg",
+  },
+  {
+    name: "LAZINESS",
+    description: "You can't change anything.",
+    price: 25.00,
+    year: 2022,
+    vintage: false,
+    img_url: "./assets/laziness.jpg",
+  },
+  {
+    name: "PROCRASTINATION",
+    description: "Better to avoid failure by not trying at all.",
+    price: 48.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/procrastination.jpg",
+  },
+  {
+    name: "DESPAIR",
+    description: "Let someone else do it; you’ll just mess it up.",
+    price: 73.00,
+    year: 2015,
+    vintage: false,
+    img_url: "./assets/despair.jpg",
+  },
+  {
+    name: "NEGLECT",
+    description: "Happiness is overrated.",
+    price: 160.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/neglect.jpg",
+  },
+  {
+    name: "FEAR",
+    description: "Giving up is always an option.",
+    price: 91.00,
+    year: 2014,
+    vintage: false,
+    img_url: "./assets/fear.jpg",
+  },
+  {
+    name: "APATHY",
+    description: "No one cares about your effort.",
+    price: 110.00,
+    year: 2016,
+    vintage: true,
+    img_url: "./assets/apathy.jpg",
+  },
+  {
+    name: "MISERY",
+    description: "Why take risks when you can stay stagnant?",
+    price: 55.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/misery.jpg",
+  },
+  {
+    name: "BLAME",
+    description: "Expect disappointment and you'll never be disappointed.",
+    price: 39.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/blame.jpg",
+  },
+  {
+    name: "DOUBT",
+    description: "Success is for other people, not you.",
+    price: 140.00,
+    year: 2020,
+    vintage: false,
+    img_url: "./assets/doubt.jpg",
+  }
+];
+
 var savedPosters = [];
 var currentPoster;
 
@@ -126,6 +252,9 @@ showSavedButton.addEventListener('click', switchToSaved)
 makePosterButton.addEventListener('click', switchToCreate)
 showPosterButton.addEventListener('click', createNewPoster)
 savePosterButton.addEventListener('click', savePoster)
+unmotivationalButton.addEventListener('click',switchToUmotivational )
+showMainButtonForm.addEventListener('click', switchToMain)
+showSavedButton.addEventListener('click', displaySavedPosters);
 // showMainButtonSaved.addEventListener('click', switchToMainFromSaved);
 
 
@@ -159,21 +288,34 @@ function createRandomPoster() {
 }
 
 // switching between the views 
+function switchToMain() {
+  mainPosterSection.classList.remove('hidden');
+  posterFormSection.classList.add('hidden');
+  savedPosterSection.classList.add('hidden');
+  unmotivationalSection.classList.add('hidden');
+}
 function switchToSaved() { 
-  mainPosterSection.classList.toggle('hidden')
-  savedPosterSection.classList.toggle('hidden')
-  displaySavedPosters();
+  mainPosterSection.classList.add('hidden')
+  savedPosterSection.classList.remove('hidden')
 }
 
 function switchToCreate() {
-  mainPosterSection.classList.toggle('hidden')
-  posterFormSection.classList.toggle('hidden')
+  mainPosterSection.classList.add('hidden')
+  posterFormSection.classList.remove('hidden')
 }
 
 function switchToMainFromForm() {
   posterFormSection.classList.add('hidden');
   mainPosterSection.classList.remove('hidden');
 }
+
+function switchToUmotivational() {
+  unmotivationalSection.classList.remove('hidden');
+  mainPosterSection.classList.add('hidden');
+  posterFormSection.classList.add('hidden');
+  savedPosterSection.classList.add('hidden');
+  displayUnmotivationalPosters()}
+
 
 // creating a new poster
 function createNewPoster(event) {
@@ -199,8 +341,6 @@ function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
   }
-
-  displaySavedPosters();
 }
 
 // Saving posters 
@@ -213,6 +353,8 @@ function displaySavedPosters() {
   switchToSaved();
 }
 
+
+// creating saved poster elements in the DOM 
 function createPosterElement(poster) {
   var posterDiv = document.createElement('div');
   posterDiv.classList.add('mini-poster');
@@ -232,6 +374,34 @@ function createPosterElement(poster) {
   posterDiv.appendChild(posterQuote);
 
   document.querySelector(".saved-posters-grid").appendChild(posterDiv);
+}
+
+
+// creating unmotivational elements in the DOM
+function displayUnmotivationalPosters(){
+  
+  // unmotivationalSection.innerHTML = '';
+
+  unmotivationalPosters.forEach(function(poster) {
+    var posterDiv = document.createElement('div');
+    posterDiv.classList.add('mini-poster');
+
+    var posterImg = document.createElement('img');
+    posterImg.src = poster.img_url;
+    posterImg.alt = poster.name;
+
+    var posterTitle = document.createElement('h2');
+    posterTitle.innerText = poster.name;
+
+    var posterDesc = document.createElement('p');
+    posterDesc.innerText = poster.description;
+
+    posterDiv.appendChild(posterImg);
+    posterDiv.appendChild(posterTitle);
+    posterDiv.appendChild(posterDesc);
+
+    unmotivationalSection.appendChild(posterDiv);
+  });
 }
 
 window.addEventListener('load', createRandomPoster);
