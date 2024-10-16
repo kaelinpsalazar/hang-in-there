@@ -15,6 +15,7 @@ var posterFormSection = document.querySelector('.poster-form');
 var savedPosterSection = document.querySelector('.saved-posters');
 var unmotivationalSection = document.querySelector('.unmotivational-section');
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid');
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 // posters elements
 var posterImage = document.querySelector('.poster-img');
@@ -357,54 +358,77 @@ function displaySavedPosters() {
 
 
 // creating saved poster elements in the DOM 
-function createPosterElement(poster) {
-  var posterDiv = document.createElement('div');
-  posterDiv.classList.add('mini-poster');
+function createPosterElement () {
 
-  var posterImg = document.createElement('img');
-  posterImg.src = poster.imageURL;
-  posterImg.classList.add('mini-poster-img');
+  savedPosters.forEach(poster => {
+    savedPostersGrid.innerHTML += `
+    <section class="mini-poster">
+      <img src="${poster.imageURL}>
+      <h2>${poster.title}</h2>
+      <h4>${poster.quote}</h4>
+    </section>`
+  })
 
-  var posterTitle = document.createElement('h2');
-  posterTitle.innerText = poster.title;
-
-  var posterQuote = document.createElement('h4');
-  posterQuote.innerText = poster.quote;
-
-  posterDiv.appendChild(posterImg);
-  posterDiv.appendChild(posterTitle);
-  posterDiv.appendChild(posterQuote);
-
-  document.querySelector(".saved-posters-grid").appendChild(posterDiv);
 }
+
+// function createPosterElement(poster) {
+//   var posterDiv = document.createElement('div');
+//   posterDiv.classList.add('mini-poster');
+
+//   var posterImg = document.createElement('img');
+//   posterImg.src = poster.imageURL;
+//   posterImg.classList.add('mini-poster-img');
+
+//   var posterTitle = document.createElement('h2');
+//   posterTitle.innerText = poster.title;
+
+//   var posterQuote = document.createElement('h4');
+//   posterQuote.innerText = poster.quote;
+
+//   posterDiv.appendChild(posterImg);
+//   posterDiv.appendChild(posterTitle);
+//   posterDiv.appendChild(posterQuote);
+
+//   document.querySelector(".saved-posters-grid").appendChild(posterDiv);
+// }
 
 
 // creating unmotivational elements in the DOM
 
-  
 function displayUnmotivationalPosters (unmotivationalPosters) {
-
   unmotivationalPosters.forEach(poster => {
-      var posterDiv = document.createElement('div');
-      posterDiv.classList.add('mini-poster');
-  
-      var img = document.createElement('img');
-      img.src = poster.img_url; 
-      img.alt = poster.name; 
-  
-      var title = document.createElement('h2');
-      title.innerText = poster.name;
-  
-      var description = document.createElement('p');
-      description.innerText = poster.description;
-  
-  
-      posterDiv.appendChild(img);
-      posterDiv.appendChild(title);
-      posterDiv.appendChild(description);  
-      unmotivationalGrid.appendChild(posterDiv);
-  });
+    unmotivationalGrid.innerHTML += `
+      <section class="mini-poster">
+        <img src="${poster.img_url}" alt=poster image">
+        <h2>${poster.title}</h2>
+        <h4>${poster.quote}</h4>
+      </section>'
+    `;
+  })
 }
+// function displayUnmotivationalPosters (unmotivationalPosters) {
+
+//   unmotivationalPosters.forEach(poster => {
+//       var posterDiv = document.createElement('div');
+//       posterDiv.classList.add('mini-poster');
+  
+//       var img = document.createElement('img');
+//       img.src = poster.img_url; 
+//       img.alt = poster.name; 
+  
+//       var title = document.createElement('h2');
+//       title.innerText = poster.name;
+  
+//       var description = document.createElement('p');
+//       description.innerText = poster.description;
+  
+  
+//       posterDiv.appendChild(img);
+//       posterDiv.appendChild(title);
+//       posterDiv.appendChild(description);  
+//       unmotivationalGrid.appendChild(posterDiv);
+//   });
+// }
 
 
 // Delete poster on double click
