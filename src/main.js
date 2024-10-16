@@ -388,6 +388,7 @@ function createPosterElement(poster) {
 
 // creating unmotivational elements in the DOM
 function displayUnmotivationalPosters (unmotivationalPosters) {
+  unmotivationalGrid.innerHTML = '';
   unmotivationalPosters.forEach(poster => {
     unmotivationalGrid.innerHTML += `
       <section class="mini-poster">
@@ -402,9 +403,15 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
 // Delete poster on double click
 
 function deletePoster(event) {
-  const posterDiv = event.target.closest('.mini-poster');
+  const posterDiv = event.target.closest('.mini-poster'); 
   if (posterDiv) {
-    posterDiv.remove();
+    const index = Array.from(unmotivationalGrid.children).indexOf(posterDiv); 
+    if (index > -1) {
+      unmotivationalPosters.splice(index, 1); 
+      
+      displayUnmotivationalPosters(unmotivationalPosters);
+    }
   }
 }
+
 window.addEventListener('load', createRandomPoster);
