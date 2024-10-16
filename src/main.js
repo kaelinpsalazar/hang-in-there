@@ -346,6 +346,8 @@ function savePoster() {
   }
 }
 
+
+
 // Saving posters 
 function displaySavedPosters() {
   var posterPage = document.querySelector(".saved-posters-grid");
@@ -358,38 +360,38 @@ function displaySavedPosters() {
 
 
 // creating saved poster elements in the DOM 
-function createPosterElement () {
 
-  savedPosters.forEach(poster => {
-    savedPostersGrid.innerHTML += `
-    <section class="mini-poster">
-      <img src="${poster.imageURL}>
-      <h2>${poster.title}</h2>
-      <h4>${poster.quote}</h4>
-    </section>`
-  })
-
+function createPosterElement(poster) {
+  var posterDiv = document.createElement('div');
+  posterDiv.classList.add('mini-poster');
+  
+  var posterImg = document.createElement('img');
+  posterImg.src = poster.imageURL;
+  posterImg.classList.add('mini-poster-img');
+  
+  var posterTitle = document.createElement('h2');
+  posterTitle.innerText = poster.title;
+  
+  var posterQuote = document.createElement('h4');
+  posterQuote.innerText = poster.quote;
+  
+  posterDiv.appendChild(posterImg);
+  posterDiv.appendChild(posterTitle);
+  posterDiv.appendChild(posterQuote);
+  
+  document.querySelector(".saved-posters-grid").appendChild(posterDiv);
 }
+// function createPosterElement () {
 
-// function createPosterElement(poster) {
-//   var posterDiv = document.createElement('div');
-//   posterDiv.classList.add('mini-poster');
+//   savedPosters.forEach(poster => {
+//     savedPostersGrid.innerHTML += `
+//     <section class="mini-poster">
+//       <img src="${poster.imageURL}>
+//       <h2>${poster.title}</h2>
+//       <h4>${poster.quote}</h4>
+//     </section>`
+//   })
 
-//   var posterImg = document.createElement('img');
-//   posterImg.src = poster.imageURL;
-//   posterImg.classList.add('mini-poster-img');
-
-//   var posterTitle = document.createElement('h2');
-//   posterTitle.innerText = poster.title;
-
-//   var posterQuote = document.createElement('h4');
-//   posterQuote.innerText = poster.quote;
-
-//   posterDiv.appendChild(posterImg);
-//   posterDiv.appendChild(posterTitle);
-//   posterDiv.appendChild(posterQuote);
-
-//   document.querySelector(".saved-posters-grid").appendChild(posterDiv);
 // }
 
 
@@ -432,10 +434,18 @@ function displayUnmotivationalPosters (unmotivationalPosters) {
 
 
 // Delete poster on double click
-function deletePoster(event) {
-  const posterDiv = event.target.closest('.mini-poster');
-  if (posterDiv) {
-    posterDiv.remove();
+function deletePoster(event) { 
+  const poster = event.target
+
+  if (poster.classList.contains('mini-poster')) {
+    target.remove
   }
+
 }
+// function deletePoster(event) {
+//   const posterDiv = event.target.closest('.mini-poster');
+//   if (posterDiv) {
+//     posterDiv.remove();
+//   }
+// }
 window.addEventListener('load', createRandomPoster);
